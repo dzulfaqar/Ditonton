@@ -1,0 +1,45 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": "/vIDHmF9U0gvQ1Oml9lV1LafHwqb.jpg",
+      "first_air_date": "1963-04-01",
+      "genre_ids": [
+        10766
+      ],
+      "id": 987,
+      "name": "General Hospital",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "General Hospital",
+      "overview": "Families, friends, enemies and lovers experience life-changing events in the large upstate New York city of Port Charles, which has a busy hospital, upscale hotel, cozy diner and dangerous waterfront frequented by the criminal underworld.",
+      "popularity": 286.099,
+      "poster_path": "/tYaWB1H4Isq4BoAjxFWMjhaEP9W.jpg",
+      "vote_average": 5.6,
+      "vote_count": 183
+    },
+    {
+      "backdrop_path": null,
+      "first_air_date": "2000-04-30",
+      "genre_ids": [
+        18
+      ],
+      "id": 12288,
+      "name": "Hospital Central",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_name": "Hospital Central",
+      "overview": "Follows the professional and personal lives of the staff of the fictitious Hospital Central in Madrid.",
+      "popularity": 21.965,
+      "poster_path": "/au5aHdFzXUXCMWLeGIKXEyKunrM.jpg",
+      "vote_average": 4.5,
+      "vote_count": 4
+    }
+  ],
+  "total_pages": 5,
+  "total_results": 82
+}
