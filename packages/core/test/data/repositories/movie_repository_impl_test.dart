@@ -14,6 +14,9 @@ void main() {
   late MockMovieRemoteDataSource mockRemoteDataSource;
   late MockMovieLocalDataSource mockLocalDataSource;
 
+  const connectionFailureMessage = 'Failed to connect to the network';
+  const sslFailureMessage = 'Failed to verify the internet connection';
+
   setUp(() {
     mockRemoteDataSource = MockMovieRemoteDataSource();
     mockLocalDataSource = MockMovieLocalDataSource();
@@ -57,15 +60,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getNowPlayingMovies())
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getNowPlayingMovies();
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getNowPlayingMovies())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getNowPlayingMovies();
+      // assert
+      verify(mockRemoteDataSource.getNowPlayingMovies());
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -100,12 +112,22 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getPopularMovies())
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getPopularMovies();
       // assert
-      expect(result,
-          const Left(ConnectionFailure('Failed to connect to the network')));
+      expect(result, const Left(ConnectionFailure(connectionFailureMessage)));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularMovies())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getPopularMovies();
+      // assert
+      verify(mockRemoteDataSource.getPopularMovies());
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -139,12 +161,22 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTopRatedMovies())
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getTopRatedMovies();
       // assert
-      expect(result,
-          const Left(ConnectionFailure('Failed to connect to the network')));
+      expect(result, const Left(ConnectionFailure(connectionFailureMessage)));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getTopRatedMovies())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getTopRatedMovies();
+      // assert
+      verify(mockRemoteDataSource.getTopRatedMovies());
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -180,15 +212,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieDetail(testMovieId))
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getMovieDetail(testMovieId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(testMovieId));
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getMovieDetail(testMovieId))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getMovieDetail(testMovieId);
+      // assert
+      verify(mockRemoteDataSource.getMovieDetail(testMovieId));
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -228,15 +269,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieRecommendations(testMovieId))
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getMovieRecommendations(testMovieId);
       // assert
       verify(mockRemoteDataSource.getMovieRecommendations(testMovieId));
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getMovieRecommendations(testMovieId))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getMovieRecommendations(testMovieId);
+      // assert
+      verify(mockRemoteDataSource.getMovieRecommendations(testMovieId));
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -272,12 +322,22 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchMovies(tQuery))
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.searchMovies(tQuery);
       // assert
-      expect(result,
-          const Left(ConnectionFailure('Failed to connect to the network')));
+      expect(result, const Left(ConnectionFailure(connectionFailureMessage)));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.searchMovies(tQuery))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.searchMovies(tQuery);
+      // assert
+      verify(mockRemoteDataSource.searchMovies(tQuery));
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -437,15 +497,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getAiringTodayTvSeries())
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getAiringTodayTvSeries();
       // assert
       verify(mockRemoteDataSource.getAiringTodayTvSeries());
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getAiringTodayTvSeries())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getAiringTodayTvSeries();
+      // assert
+      verify(mockRemoteDataSource.getAiringTodayTvSeries());
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -483,15 +552,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getPopularTvSeries())
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getPopularTvSeries();
       // assert
       verify(mockRemoteDataSource.getPopularTvSeries());
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularTvSeries())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getPopularTvSeries();
+      // assert
+      verify(mockRemoteDataSource.getPopularTvSeries());
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -529,15 +607,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTopRatedTvSeries())
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getTopRatedTvSeries();
       // assert
       verify(mockRemoteDataSource.getTopRatedTvSeries());
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getTopRatedTvSeries())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getTopRatedTvSeries();
+      // assert
+      verify(mockRemoteDataSource.getTopRatedTvSeries());
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -575,15 +662,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTvSeriesDetail(testTvSeriesId))
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getTvSeriesDetail(testTvSeriesId);
       // assert
       verify(mockRemoteDataSource.getTvSeriesDetail(testTvSeriesId));
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getTvSeriesDetail(testTvSeriesId))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getTvSeriesDetail(testTvSeriesId);
+      // assert
+      verify(mockRemoteDataSource.getTvSeriesDetail(testTvSeriesId));
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -623,16 +719,26 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTvSeriesRecommendations(testTvSeriesId))
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result =
           await repository.getTvSeriesRecommendations(testTvSeriesId);
       // assert
       verify(mockRemoteDataSource.getTvSeriesRecommendations(testTvSeriesId));
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getTvSeriesRecommendations(testTvSeriesId))
+          .thenThrow(const TlsException());
+      // act
+      final result =
+          await repository.getTvSeriesRecommendations(testTvSeriesId);
+      // assert
+      verify(mockRemoteDataSource.getTvSeriesRecommendations(testTvSeriesId));
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -670,15 +776,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchTvSeries(testTvSeriesQuery))
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.searchTvSeries(testTvSeriesQuery);
       // assert
       verify(mockRemoteDataSource.searchTvSeries(testTvSeriesQuery));
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.searchTvSeries(testTvSeriesQuery))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.searchTvSeries(testTvSeriesQuery);
+      // assert
+      verify(mockRemoteDataSource.searchTvSeries(testTvSeriesQuery));
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 
@@ -716,15 +831,24 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTvSeriesEpisode(testTvSeriesId, 1))
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException(connectionFailureMessage));
       // act
       final result = await repository.getTvSeriesEpisode(testTvSeriesId, 1);
       // assert
       verify(mockRemoteDataSource.getTvSeriesEpisode(testTvSeriesId, 1));
-      expect(
-          result,
-          equals(const Left(
-              ConnectionFailure('Failed to connect to the network'))));
+      expect(result,
+          equals(const Left(ConnectionFailure(connectionFailureMessage))));
+    });
+
+    test('should return SSL failure when TlsException occurred', () async {
+      // arrange
+      when(mockRemoteDataSource.getTvSeriesEpisode(testTvSeriesId, 1))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getTvSeriesEpisode(testTvSeriesId, 1);
+      // assert
+      verify(mockRemoteDataSource.getTvSeriesEpisode(testTvSeriesId, 1));
+      expect(result, equals(const Left(SSLFailure(sslFailureMessage))));
     });
   });
 }

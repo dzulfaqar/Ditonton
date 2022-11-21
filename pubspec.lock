@@ -4,7 +4,7 @@ packages:
   about:
     dependency: "direct main"
     description:
-      path: about
+      path: "packages/about"
       relative: true
     source: path
     version: "0.0.1"
@@ -109,7 +109,7 @@ packages:
   core:
     dependency: "direct main"
     description:
-      path: core
+      path: "packages/core"
       relative: true
     source: path
     version: "0.0.1"
@@ -321,7 +321,7 @@ packages:
   movies:
     dependency: "direct main"
     description:
-      path: movies
+      path: "packages/movies"
       relative: true
     source: path
     version: "0.0.1"
@@ -447,7 +447,7 @@ packages:
   search:
     dependency: "direct main"
     description:
-      path: search
+      path: "packages/search"
       relative: true
     source: path
     version: "0.0.1"
@@ -536,7 +536,7 @@ packages:
   tv_series:
     dependency: "direct main"
     description:
-      path: tv_series
+      path: "packages/tv_series"
       relative: true
     source: path
     version: "0.0.1"
@@ -571,7 +571,7 @@ packages:
   watchlist:
     dependency: "direct main"
     description:
-      path: watchlist
+      path: "packages/watchlist"
       relative: true
     source: path
     version: "0.0.1"

@@ -22,9 +22,9 @@ environment:
 
 dependencies:
   about:
-    path: about
+    path: packages/about
   core:
-    path: core
+    path: packages/core
   cupertino_icons: ^1.0.2
   encrypt: ^5.0.1
   firebase_core: ^1.20.0
@@ -34,13 +34,13 @@ dependencies:
   flutter_bloc: ^8.0.0
   get_it: ^7.1.3
   movies:
-    path: movies
+    path: packages/movies
   search:
-    path: search
+    path: packages/search
   tv_series:
-    path: tv_series
+    path: packages/tv_series
   watchlist:
-    path: watchlist
+    path: packages/watchlist
 
 dev_dependencies:
   flutter_test:

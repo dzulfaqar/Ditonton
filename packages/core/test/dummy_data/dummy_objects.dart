@@ -34,10 +34,10 @@ const tMovieModel = MovieModel(
   voteCount: 13507,
 );
 
-final tMovie = Movie(
+const tMovie = Movie(
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-  genreIds: const [14, 28],
+  genreIds: [14, 28],
   id: 557,
   originalTitle: 'Spider-Man',
   overview:
@@ -53,10 +53,10 @@ final tMovie = Movie(
 
 final tMovieModelList = <MovieModel>[tMovieModel];
 final tMovieList = <Movie>[tMovie];
-final testMovie = Movie(
+const testMovie = Movie(
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-  genreIds: const [14, 28],
+  genreIds: [14, 28],
   id: 557,
   originalTitle: 'Spider-Man',
   overview:
@@ -330,7 +330,7 @@ const testTvSeriesEpisode = TvSeriesEpisode(
   seasonNumber: 1,
 );
 
-final testMovieWatchlist = Movie.watchlist(
+const testMovieWatchlist = Movie.watchlist(
   id: 1,
   title: 'Title',
   posterPath: '/path.jpg',
